@@ -1,7 +1,11 @@
 require "./behavior_tree/*"
 require "./behavior_tree/node/*"
 
-module BehaviorTree  
+module BehaviorTree
+  
+  def new(state : State, command : Command)
+    BehaviorTree::BehaviorTree(State, Command).new(state, command)
+  end
   
   class BehaviorTree(State, Command)
     property root : Node::Node(State, Command)
