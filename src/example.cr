@@ -14,5 +14,5 @@ behavior_tree(nil,
     puts_action,     
     puts_action, 
     puts_action, 
-  ] of Node::All
+  ]
 ).run("hello")

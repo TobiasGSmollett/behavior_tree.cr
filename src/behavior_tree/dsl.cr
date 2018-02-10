@@ -7,14 +7,14 @@ module BehaviorTree::DSL(State, Command)
   end
   
   def action(name : String, &block : State, Command -> Bool)
-    Node::Action(State, Command).new block
+    Node::Action(State, Command).new(block).as(Node::Node(State, Command))
   end
   
-  def sequence(name : String, children : Array(Node::All))
+  def sequence(name : String, children : Array(Node::Node(State, Command)))
     Node::Sequence(State, Command).new children
   end
   
-  def selector(name : String, children : Array(Node::All))
+  def selector(name : String, children : Array(Node::Node(State, Command)))
     Node::Selector(State, Command).new children
   end
 end

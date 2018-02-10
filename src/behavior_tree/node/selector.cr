@@ -3,7 +3,7 @@ require "./*"
 module BehaviorTree::Node
   class Selector(State, Command) < Node(State, Command)
     
-    @children : Array(All)
+    @children : Array(Node(State, Command))
 
     def initialize(@children = [] of Node(State, Command))
     end
