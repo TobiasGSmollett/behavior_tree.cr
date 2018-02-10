@@ -1,6 +1,17 @@
 require "./behavior_tree/*"
 
-# TODO: Write documentation for `BehaviorTree.cr`
 module BehaviorTree
-  # TODO: Put your code here
+  class BehaviorTree(State)
+    
+    property state : State
+    
+    def initialize(@state)
+    
+    end
+    
+    def run(command)
+      
+    end
+  end
 end
+
