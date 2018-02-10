@@ -1,5 +1,5 @@
 module BehaviorTree::Node
-  class Selector(State) < BehaviorTree::Node(State)
+  class Selector(State, Command) < BehaviorTree::Node(State, Command)
 
     @children : Array(BehaviorTree::Node)
 
@@ -10,11 +10,11 @@ module BehaviorTree::Node
       @children << child
     end
     
-    def run(tree : BehaviorTree::BehaviorTree) :: Boolean
+    def run(state : State, command : Command) :: Boolean
       @children.each do |child|
-        state = tree.state.dup
-        if child.run(state)
-          tree.state = state
+        local_state = state.dup
+        if child.run(local_state, command)
+          tree.state = local_state
           return true
         end
       end

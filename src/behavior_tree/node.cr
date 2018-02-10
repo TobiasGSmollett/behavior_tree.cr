@@ -1,5 +1,5 @@
 module BehaviorTree
-  class Node(State)
-    abstract def run(state : State) :: Boolean    
+  class Node(State, Command)
+    abstract def run(state : State, command : Command) :: Boolean    
   end
 end
