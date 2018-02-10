@@ -1,12 +1,14 @@
+require "./*"
+
 module BehaviorTree::Node
-  class Selector(State, Command) < BehaviorTree::Node(State, Command)
+  class Selector(State, Command) < Node(State, Command)
+    
+    @children : Array(Node(State, Command))
 
-    @children : Array(BehaviorTree::Node)
-
-    def initialize(@children = [] of BehaviorTree::Node)
+    def initialize(@children = [] of Node(State, Command))
     end
     
-    def <<(child : BehaviorTree::Node)
+    def <<(child : Node(State, Command))
       @children << child
     end
     
@@ -14,7 +16,7 @@ module BehaviorTree::Node
       @children.each do |child|
         local_state = state.dup
         if child.run(local_state, command)
-          tree.state = local_state
+          state = local_state
           return true
         end
       end
