@@ -12,7 +12,7 @@ module BehaviorTree::Node
       @children << child
     end
     
-    def run(state : State, command : Command) :: Boolean
+    def run(state : State, command : Command) : Bool
       @children.each do |child|
         local_state = state.dup
         if child.run(local_state, command)

@@ -15,19 +15,3 @@ module BehaviorTree
     end
   end
 end
-
-
-class Hello < BehaviorTree::Node::Node(Nil, String)
-  def run(a, b)
-    puts "#{b}"
-    true
-  end
-end
-
-# example
-seq = BehaviorTree::Node::Sequence(Nil, String).new
-seq << Hello.new
-seq << Hello.new
-seq << Hello.new
-bt = BehaviorTree::BehaviorTree(Nil, String).new(nil, seq)
-bt.run("hello")
