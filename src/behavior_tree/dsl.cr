@@ -1,7 +1,7 @@
 require "../*"
 require "./node/*"
 
-module BehaviorTree::DSL(State, Command)  
+module BehaviorTree::DSL(State, Command)
   def behavior_tree(initial_state, root_node)
     BehaviorTree(State, Command).new(initial_state, root_node)
   end
@@ -10,11 +10,11 @@ module BehaviorTree::DSL(State, Command)
     Node::Action(State, Command).new block
   end
   
-  def sequence(name : String, children : Array(Node::Node(State, Command)))
+  def sequence(name : String, children : Array(Node::All))
     Node::Sequence(State, Command).new children
   end
   
-  def selector(name : String, children : Array(Node::Node(State, Command)))
+  def selector(name : String, children : Array(Node::All))
     Node::Selector(State, Command).new children
   end
 end

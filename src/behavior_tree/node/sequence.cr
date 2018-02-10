@@ -3,9 +3,9 @@ require "./*"
 module BehaviorTree::Node
   class Sequence(State, Command) < Node(State, Command)
     
-    @children : Array(Node(State, Command))
-    
-    def initialize(@children = [] of Node(State, Command))
+    @children : Array(All)
+
+    def initialize(@children)
     end
     
     def <<(child : Node(State, Command))

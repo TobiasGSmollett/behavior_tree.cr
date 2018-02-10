@@ -1,6 +1,6 @@
 require "./behavior_tree/*"
 
-include BehaviorTree::Node
+include BehaviorTree
 include BehaviorTree::DSL(Nil, String)
 
 puts_action = 
@@ -14,5 +14,5 @@ behavior_tree(nil,
     puts_action,     
     puts_action, 
     puts_action, 
-  ] of Node(Nil, String)
+  ] of Node::All
 ).run("hello")
