@@ -1,6 +1,6 @@
 require "./spec_helper"
 
-describe BehaviorTree.cr do
+describe BehaviorTree do
   # TODO: Write tests
 
   it "works" do

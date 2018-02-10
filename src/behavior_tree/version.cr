@@ -1,3 +1,3 @@
-module BehaviorTree.cr
+module BehaviorTree
   VERSION = "0.1.0"
 end

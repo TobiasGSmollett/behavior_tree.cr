@@ -1,2 +1,2 @@
 require "spec"
-require "../src/behavior_tree.cr"
+require "../src/behavior_tree"

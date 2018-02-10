@@ -8,14 +8,14 @@ Add this to your application's `shard.yml`:
 
 ```yaml
 dependencies:
-  behavior_tree.cr:
-    github: [your-github-name]/behavior_tree.cr
+  behavior_tree:
+    github: TobiasGSmollett/behavior_tree.cr
 ```
 
 ## Usage
 
 ```crystal
-require "behavior_tree.cr"
+require "behavior_tree"
 ```
 
 TODO: Write usage instructions here
@@ -34,4 +34,4 @@ TODO: Write development instructions here
 
 ## Contributors
 
-- [[your-github-name]](https://github.com/[your-github-name]) TobiasGSmollett - creator, maintainer
+- [TobiasGSmollett](https://github.com/[your-github-name]) TobiasGSmollett - creator, maintainer
