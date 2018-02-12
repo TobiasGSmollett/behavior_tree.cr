@@ -1,26 +1,27 @@
 require "./*"
 
 module BehaviorTree::Node
-  class Selector(State) < Node(State)
+  class Selector(State, Effect) < Node(State, Effect)
     
-    @children : Array(Node(State))
+    @children : Array(Node(State, Effect))
 
-    def initialize(@children = [] of Node(State))
+    def initialize(@children = [] of Node(State, Effect))
     end
     
     def <<(child : Node(State))
       @children << child
     end
     
-    def run(state : State) : Bool
+    def run(state : State) : {Bool, Array(Effect)}
       @children.each do |child|
         local_state = state.dup
-        if child.run(local_state)
+        success?, effects = child.run(local_state)
+        if success?
           state = local_state
-          return true
+          return {true, effects}
         end
       end
-      false
+      {false, [] of Effect}
     end
   end
 end

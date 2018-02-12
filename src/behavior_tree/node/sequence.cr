@@ -1,24 +1,26 @@
 require "./*"
 
 module BehaviorTree::Node
-  class Sequence(State) < Node(State)
+  class Sequence(State, Effect) < Node(State, Effect)
     
-    @children : Array(Node(State))
+    @children : Array(Node(State, Effect))
 
-    def initialize(@children)
+    def initialize(@children = [] of Node(State, Effect))
     end
     
     def <<(child : Node(State))
       @children << child
     end
     
-    def run(state : State) : Bool
+    def run(state : State) : {Bool, Array(Effect)}
       local_state = state.dup
-      @children.each do |child|
-        return false if !child.run(local_state)
+      all_effects = @children.map do |child|
+        success?, effects = child.run(local_state)
+        return {false, [] of Effect} if !success?
+        effects
       end
       state = local_state
-      true
+      {true, all_effects.flatten}
     end
   end
 end

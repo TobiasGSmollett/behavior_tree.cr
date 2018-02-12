@@ -4,18 +4,19 @@ require "./behavior_tree/node/*"
 module BehaviorTree
   
   def new(state : State)
-    BehaviorTree::BehaviorTree(State).new(state)
+    BehaviorTree::BehaviorTree(State, Object).new(state)
   end
   
-  class BehaviorTree(State)
-    property root : Node::Node(State)
+  class BehaviorTree(State, Effect)
+    property root : Node::Node(State, Effect)
     property state : State
     
     def initialize(@state, @root)
     end
     
     def run
-      @root.run(@state) if !@root.nil?
+      success?, effects = @root.run(@state)
+      effects
     end
   end
 end

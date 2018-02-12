@@ -1,6 +1,6 @@
 module BehaviorTree::Node  
   
-  abstract class Node(State)
-    abstract def run(state : State) : Bool
+  abstract class Node(State, Effect)
+    abstract def run(state : State) : {Bool, Array(Effect)}
   end
 end
