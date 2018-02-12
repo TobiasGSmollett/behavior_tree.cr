@@ -1,6 +1,6 @@
 module BehaviorTree::Node  
   
-  abstract class Node(State, Command)
-    abstract def run(state : State, command : Command) : Bool
+  abstract class Node(State)
+    abstract def run(state : State) : Bool
   end
 end

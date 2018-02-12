@@ -1,15 +1,17 @@
 require "./*"
 
 module BehaviorTree::Node
-  class Action(State, Command) < Node(State, Command)
+  class Action(State) < Node(State)
     
-    @action : State, Command -> Bool
+    @action : State -> Bool
     
-    def initialize(@action)
+    getter name : String
+    
+    def initialize(@name, @action)
     end
     
-    def run(state : State, command : Command) : Bool
-      @action.call(state, command)
+    def run(state : State) : Bool
+      @action.call(state)
     end
   end
 end

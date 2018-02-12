@@ -1,11 +1,11 @@
 require "./behavior_tree/*"
 
 include BehaviorTree
-include BehaviorTree::DSL(Nil, String)
+include BehaviorTree::DSL(Nil)
 
 puts_action = 
-  action "Puts" do |state, command|
-    puts "#{command}"
+  action "Puts" do |state|
+    puts "hello"
     true
   end
 
@@ -15,4 +15,4 @@ behavior_tree(nil,
     puts_action, 
     puts_action, 
   ]
-).run("hello")
+).run()
