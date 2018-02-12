@@ -12,11 +12,11 @@ module BehaviorTree::Node
       @children << child
     end
     
-    def run(state : State) : {Bool, Array(Effect)}
+    def run(state : State) : {Bool, Array({String, Effect})}
       local_state = state.dup
       all_effects = @children.map do |child|
         success?, effects = child.run(local_state)
-        return {false, [] of Effect} if !success?
+        return {false, [] of {String, Effect}} if !success?
         effects
       end
       state = local_state
