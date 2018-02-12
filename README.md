@@ -1,6 +1,6 @@
 # behavior_tree.cr
 
-TODO: Write a description here
+This library is an implementation of [Behavior Tree](https://github.com/libgdx/gdx-ai/wiki/Behavior-Trees) for Crystal.
 
 ## Installation
 
@@ -16,13 +16,47 @@ dependencies:
 
 ```crystal
 require "behavior_tree"
+
+include BehaviorTree
+include BehaviorTree::DSL(Nil, Nil)
+
+puts_action = 
+  action "Puts" do |state|
+    puts "hello"
+    {true, nil}
+  end
+
+predicate = ->(state : Nil){ false }
+
+success = 
+  action "Puts" do |state|
+    puts "true"
+    {true, nil}
+  end
+  
+failure = 
+  action "Puts" do |state|
+    puts "false"
+    {true, nil}
+  end
+    
+result =
+behavior_tree(nil,
+  sequence [
+    puts_action,     
+    puts_action, 
+    puts_action, 
+    conditional(predicate, success, failure),
+  ]
+).run()
+
+puts result
+# hello
+# hello
+# hello
+# false
+# [{"Puts", nil}, {"Puts", nil}, {"Puts", nil}, {"Puts", nil}]
 ```
-
-TODO: Write usage instructions here
-
-## Development
-
-TODO: Write development instructions here
 
 ## Contributing
 
@@ -34,4 +68,4 @@ TODO: Write development instructions here
 
 ## Contributors
 
-- [TobiasGSmollett](https://github.com/[your-github-name]) TobiasGSmollett - creator, maintainer
+- [TobiasGSmollett](https://github.com/TobiasGSmollett) TobiasGSmollett - creator, maintainer
